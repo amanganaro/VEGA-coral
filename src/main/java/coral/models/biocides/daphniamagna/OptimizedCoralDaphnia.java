@@ -3,13 +3,14 @@
  * was developed under the project COMBASE.  The model uses local attributes (Sk, SSk).
  * 
  */
-package insilico.core.coral.models.biocides.daphniamagna;
+package coral.models.biocides.daphniamagna;
 
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralSMILES;
-import insilico.core.coral.CoralAttributes;
+import coral.CoralAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
+
 import java.util.ArrayList;
-        
+
 /**
  *
  * @author GLavado
@@ -18,7 +19,7 @@ public class OptimizedCoralDaphnia extends CoralModel {
 
     public OptimizedCoralDaphnia() {
         // intercept, slope, structural attributes with their correlation weights
-        super(0.5569253, 0.1098193 , "/insilico/core/coral/models/biocides/daphniamagna/optimized_daphnia_SA_CW.txt");
+        super(0.5569253, 0.1098193 , "/optimized_daphnia_SA_CW.txt");
     }
 
     @Override

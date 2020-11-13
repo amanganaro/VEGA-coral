@@ -1,3 +1,5 @@
+package coral;
+
 import insilico.core.exception.GenericFailureException;
 import insilico.core.exception.InitFailureException;
 import insilico.core.exception.InvalidMoleculeException;
@@ -50,11 +52,11 @@ public class GAODescriptor {
         GAOMatrix = null;
         GAOMatrixHeaders = null;
         HAddType = H_TYPE_ALL;
-        
+
         // Init list of atomic orbitals for known atom types
         // Note: Bk should be 1s2 2s2 2p6 3s2 3p6 3d10 4s2 4p6 4d10  4f14 5s2 5p6 5d10  5f9 6s2 6p6 7s2.
         // But we have kept the original file
-        URL u = getClass().getResource("AOs.txt");
+        URL u = getClass().getResource("/AOs.txt");
         this.OrbitalForAtomType = readAOListFromFile(u.openStream());
         
     }

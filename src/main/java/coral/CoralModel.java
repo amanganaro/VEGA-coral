@@ -1,3 +1,5 @@
+package coral;
+
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public abstract class CoralModel {
      */
     protected void InitSAs() throws Exception {
         // read SA list and weights from the given resource
-        URL u = getClass().getResource(SaSource);
+        URL u = this.getClass().getResource(SaSource);
         this.SAsList = readStructuralAttributeFromFile(u.openStream(),1);        
     }
     

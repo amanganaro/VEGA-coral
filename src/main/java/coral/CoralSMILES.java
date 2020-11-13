@@ -1,3 +1,5 @@
+package coral;
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -15,7 +17,7 @@ import java.util.Map;
  */
 public class CoralSMILES {
     
-    private static final String TWO_CHAR_LIST_SOURCE = "one_element_two_char.txt";
+    private static final String TWO_CHAR_LIST_SOURCE = "/one_element_two_char.txt";
     private final ArrayList<String> TwoCharList;
         
 
@@ -24,10 +26,10 @@ public class CoralSMILES {
      * @throws NullPointerException
      */
     public CoralSMILES() throws Exception {
-        
+
         // read the list of 2-chars tokens from the local resource
         try {
-            URL u = getClass().getResource(TWO_CHAR_LIST_SOURCE);
+            URL u = this.getClass().getResource(TWO_CHAR_LIST_SOURCE);
             DataInputStream in = new DataInputStream(u.openStream());
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             

@@ -1,11 +1,12 @@
 /**
  * QSAR model for the chromosome aberration test.
  */
-package insilico.core.coral.models.CHRAB;
+package coral.models.CHRAB;
 
-import insilico.core.coral.CoralAttributes;
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralSMILES;
+import coral.CoralAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
+
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ public class CoralCHRAB extends CoralModel{
     
     //Endpoint =  -0.3129603 (± 0.0019980) +    0.0682837 (± 0.0001541) * DCW(1,13)
     public CoralCHRAB() {
-        super(-0.3129603, 0.0682837, "/insilico/core/coral/models/CHRAB/attr-cw-CHRAB.txt");
+        super(-0.3129603, 0.0682837, "/attr-cw-CHRAB.txt");
     }
 
     @Override

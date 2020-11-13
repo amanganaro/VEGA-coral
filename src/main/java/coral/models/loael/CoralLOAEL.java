@@ -1,9 +1,10 @@
-package insilico.core.coral.models.loael;
+package coral.models.loael;
 
 
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralAttributes;
-import insilico.core.coral.CoralSMILES;
+import coral.CoralAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
+
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class CoralLOAEL extends CoralModel{
 
     public CoralLOAEL() throws Exception {
-        super(1.6712499, 0.0567754, "/insilico/core/coral/models/loael/loael_attr_cw.txt");
+        super(1.6712499, 0.0567754, "/loael_attr_cw.txt");
     }
 
     @Override

@@ -1,8 +1,9 @@
-package insilico.core.coral.models.noael;
+package coral.models.noael;
 
-import insilico.core.coral.CoralAttributes;
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralSMILES;
+import coral.CoralAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
+
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class CoralNOAEL extends CoralModel{
 
     public CoralNOAEL() {
-        super(1.1574991, 0.0608755 , "/insilico/core/coral/models/noael/noael_attr_cw.txt");
+        super(1.1574991, 0.0608755 , "/noael_attr_cw.txt");
     }
 
     @Override

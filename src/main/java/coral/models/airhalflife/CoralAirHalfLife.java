@@ -1,9 +1,9 @@
 
-package models.airhalflife;
+package coral.models.airhalflife;
 
-import CoralAttributes;
-import CoralModel;
-import CoralSMILES;
+import coral.CoralAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class CoralAirHalfLife extends CoralModel {
 
     public CoralAirHalfLife() {
-        super(-2.2271129,  0.0900047, "/insilico/core/coral/models/airhalflife/list_airhalflife_SA_CW.txt");
+        super(-2.2271129,  0.0900047, "/list_airhalflife_SA_CW.txt");
     }
 
     @Override

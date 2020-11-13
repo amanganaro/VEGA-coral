@@ -4,12 +4,14 @@
  * 
  */
 
-package insilico.core.coral.models.biocides.fish;
+package coral.models.biocides.fish;
 
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralSMILES;
+import coral.CoralAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
+
 import java.util.ArrayList;
-import insilico.core.coral.CoralAttributes;
+
 /**
  *
  * @author Giovanna
@@ -17,7 +19,7 @@ import insilico.core.coral.CoralAttributes;
 public class OptimizedCoralFish extends CoralModel{
 
     public OptimizedCoralFish() {
-        super(-0.9887356,  0.0454373, "/insilico/core/coral/models/biocides/fish/optimized_fish_attr_cw.txt");
+        super(-0.9887356,  0.0454373, "/optimized_fish_attr_cw.txt");
     }
 
     @Override

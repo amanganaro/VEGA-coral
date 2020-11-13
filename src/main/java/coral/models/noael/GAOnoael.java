@@ -4,12 +4,13 @@
  * Paper: CORAL: model for no observed adverse effect level (NOAEL)”, Toropov et al, 2015.
  * 
  */
-package insilico.core.coral.models.noael;
+package coral.models.noael;
 
-import insilico.core.coral.CoralAttributes;
-import insilico.core.coral.GAODescriptor;
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralSMILES;
+import coral.CoralAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
+import coral.GAODescriptor;
+
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class GAOnoael extends CoralModel {
 
     public GAOnoael() {
-        super(-2.1680835, 0.0737528, "/insilico/core/coral/models/noael/GAO_noael_attr_cw.txt");
+        super(-2.1680835, 0.0737528, "/GAO_noael_attr_cw.txt");
     }
 
     @Override

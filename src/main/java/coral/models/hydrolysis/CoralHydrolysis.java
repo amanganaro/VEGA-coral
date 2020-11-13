@@ -1,9 +1,10 @@
-package insilico.core.coral.models.hydrolysis;
+package coral.models.hydrolysis;
 
-import insilico.core.coral.CoralAttributes;
-import insilico.core.coral.CoralGraphAttributes;
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralSMILES;
+import coral.CoralAttributes;
+import coral.CoralGraphAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
+
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ public class CoralHydrolysis extends CoralModel{
 
     public CoralHydrolysis() {
         //Endpoint =  -1.2866535 (± 0.0418619) +    0.2544880 (± 0.0033488) * DCW(1,35)
-        super(-1.2866535, 0.2544880, "/insilico/core/coral/models/hydrolysis/attr_cw_hydrolysis.txt");
+        super(-1.2866535, 0.2544880, "/attr_cw_hydrolysis.txt");
     }
 
     @Override

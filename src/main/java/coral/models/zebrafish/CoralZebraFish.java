@@ -1,8 +1,9 @@
-package insilico.core.coral.models.zebrafish;
+package coral.models.zebrafish;
 
-import insilico.core.coral.CoralAttributes;
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralSMILES;
+import coral.CoralAttributes;
+import coral.CoralModel;
+import coral.CoralSMILES;
+
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class CoralZebraFish extends CoralModel {
     
     public CoralZebraFish() throws Exception {
-        super(1.1053641, 0.0272434, "/insilico/core/coral/models/zebrafish/zebrafish-2.txt");
+        super(1.1053641, 0.0272434, "/zebrafish-2.txt");
     }
 
     
