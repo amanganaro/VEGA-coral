@@ -6,12 +6,12 @@
 
     <groupId>InSilico</groupId>
     <artifactId>Coral</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
     <name>InSilico-Coral</name>
     <description>
-        Coral libraries for the inSilico project (VEGA etc) - Updated to OpenJDK 11
+        Coral libraries for the inSilico project (VEGA etc) - Updated to OpenJDK 11 and CDK 2.3
     </description>
 
     <properties>
@@ -70,7 +70,7 @@
         <dependency>
             <groupId>InSilico</groupId>
             <artifactId>Core</artifactId>
-            <version>0.5.7</version>
+            <version>1.3.5</version>
         </dependency>
 
 

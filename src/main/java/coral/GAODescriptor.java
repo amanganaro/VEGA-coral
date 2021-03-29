@@ -243,7 +243,7 @@ public class GAODescriptor {
         int OldCount = mol.getAtomCount();
 
         for (int i=0;i<OldCount;i++) {
-            Atom atom = (Atom) NewMol.getAtom(i);
+            IAtom atom = NewMol.getAtom(i);
             
             // check if hetero or terminal atom
             if (HAddType == H_TYPE_HETERO_TERMINAL) {
