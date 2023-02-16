@@ -5,6 +5,7 @@ import insilico.core.coral.CoralAttributes;
 import insilico.core.coral.CoralModel;
 import insilico.core.coral.CoralSMILES;
 
+
 import java.util.ArrayList;
 
 /**
@@ -19,18 +20,18 @@ public class CoralLOAEL extends CoralModel{
 
     @Override
     protected double calculateDCW(String smi) throws Exception {
-        
+
         // calculate the list of all Sk, SSk and HARD attributes for the given SMILES
         CoralSMILES coral_smi = new CoralSMILES();
         ArrayList<String> tokenList =  coral_smi.ProcessSMILES(smi);
-        
+
         ArrayList<String> attrList = CoralAttributes.calculateAttributeSks(tokenList);
         attrList.addAll(CoralAttributes.calculateAttributeSSks(tokenList));
         attrList.add(CoralAttributes.calculateAttributeHARDCoral2017(tokenList));
-        
+
         // retrieve the weights of all attributes for the current loaded model
         ArrayList<Double> weights = calculateSAvalues(attrList);
-        
+
         // calculate the prediction with an ADDITIVE scheme
         double value = 0;
         for (Double d : weights)
@@ -38,5 +39,5 @@ public class CoralLOAEL extends CoralModel{
 
         return value;
     }
-    
+
 }

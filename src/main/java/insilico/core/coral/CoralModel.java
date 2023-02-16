@@ -50,30 +50,49 @@ public abstract class CoralModel {
      * @throws Exception
      */
     protected abstract double calculateDCW(String smi) throws Exception;
-    
-    
+
+
+    /**
+     * Overload of the method for standard usage (no verbose mode)
+     *
+     * @param SAs
+     * @return
+     */
+    protected ArrayList<Double> calculateSAvalues(ArrayList<String> SAs) {
+        return calculateSAvalues(SAs, false);
+    }
+
+
     /**
      * Retrieve the list of weights for all the given SAs, from the list of
      * current SAs weights loaded in the constructor. Values are provided as a
-     * list so that different schemes (additive etc.) can be applied in the 
+     * list so that different schemes (additive etc.) can be applied in the
      * model.
-     * 
+     *
      * @param SAs
-     * @return 
+     * @param Verbose
+     * @return
      */
-    protected ArrayList<Double> calculateSAvalues(ArrayList<String> SAs) {
-    
+    protected ArrayList<Double> calculateSAvalues(ArrayList<String> SAs, boolean Verbose) {
+
         ArrayList<Double> Values = new ArrayList<>();
-        
-        for (String attrInSmiles : SAs)
-            for (StructuralAttribute str_attr : this.SAsList) 
-                if (attrInSmiles.compareTo(str_attr.getAttribute())==0)
+
+        for (String attrInSmiles : SAs) {
+            String val = "0.0";
+            for (StructuralAttribute str_attr : this.SAsList) {
+                if (attrInSmiles.compareTo(str_attr.getAttribute()) == 0) {
                     Values.add(str_attr.getCorrWeight());
-     
+                    val = "" + str_attr.getCorrWeight();
+                }
+            }
+            if (Verbose)
+                System.out.println(attrInSmiles + "\t" + val);
+        }
+
         return Values;
     }
-    
-    
+
+
     /**
      * Return the prediction for a given SMILES structure, based on the 
      * parameters and weights provided to the constructor. Calculation of DCW

@@ -6,10 +6,7 @@
 
 package insilico.core.coral.models.loael.liver;
 
-import insilico.core.coral.CoralAttributes;
-import insilico.core.coral.CoralGraphAttributes;
-import insilico.core.coral.CoralModel;
-import insilico.core.coral.CoralSMILES;
+import insilico.core.coral.*;
 
 import java.util.ArrayList;
 
@@ -27,28 +24,28 @@ public class CoralLiverLoel extends CoralModel{
     @Override
     protected double calculateDCW(String smi) throws Exception {
         double dcw = 0;
-        
+
         CoralSMILES coral_smi = new CoralSMILES();
         ArrayList<String> list_tokens = coral_smi.ProcessSMILES(smi);
-        
+
         // Sk, SSk, SSSk, e1, e2, e3, nn
         ArrayList<String> list_attributes = CoralAttributes.calculateAllLocalAttributes(list_tokens);
-     
+
         CoralGraphAttributes coral_graph_attr = new CoralGraphAttributes(smi);
         // NNC
         list_attributes.addAll(coral_graph_attr.CalculateNNC());
         // EC,EC2,EC3
         list_attributes.addAll(coral_graph_attr.CalculateEC(3));
-        
+
         ArrayList<Double> weights = calculateSAvalues(list_attributes);
-        
+
         // ADDITIVE scheme for the optimal descriptor
         for (Double d : weights){
             dcw += d;
         }
-        
+
         return dcw;
-        
+
     }
-    
+
 }
