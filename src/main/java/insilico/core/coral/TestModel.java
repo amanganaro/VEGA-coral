@@ -1,5 +1,6 @@
 package insilico.core.coral;
 
+import insilico.core.coral.models.henryslaw.CoralHenrysLaw;
 import insilico.core.coral.models.loael.CoralLOAEL;
 import insilico.core.coral.models.loael.general.CoralGeneralLoael;
 import insilico.core.coral.models.loael.liver.CoralLiverLoaelNew;
@@ -21,24 +22,18 @@ public class TestModel {
 
         ////////////////////
 
-        String sourcefile = "C:\\Users\\Alberto\\Desktop\\skin.txt";
+        String sourcefile = "C:\\Users\\alber\\Desktop\\prova\\prova_henry.txt";
 
-        TestCoralModel(sourcefile, new CoralSkinIrritation());
+        TestCoralModel(sourcefile, new CoralHenrysLaw());
         if (1==1) return;
 
         ////////////////////
 
         String[] smi = {
-            "O=C(Nc1ccccc1)Nc2cnns2",
-            "O=C(c2cccc1nnsc12)SC",
-            "O=Cc1occc1",
-            "O=C(N(c1c(csc1C)C)C(C)COC)CCl",
-            "O=C(OCC)C(Oc3ccc(Oc1nc2ccc(cc2(o1))Cl)cc3)C",
-            "N#Cc1c[nH]cc1c3cccc2OC(F)(F)Oc23",
-            "N#Cc1c([nH]c(c1Br)C(F)(F)F)c2ccc(cc2)Cl",
+            "CCC([N+]([O-])=O)([N+]([O-])=O)[N+]([O-])=O",
         };
 
-        CoralModel model = new CoralLiverLoaelNew();
+        CoralModel model = new CoralHenrysLaw();
 
         for (String s : smi) {
             System.out.println("Attributes for molecule: ");
