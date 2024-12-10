@@ -1,5 +1,6 @@
 package insilico.core.coral;
 
+import insilico.core.coral.models.ec50.CoralEC50;
 import insilico.core.coral.models.henryslaw.CoralHenrysLaw;
 import insilico.core.coral.models.loael.CoralLOAEL;
 import insilico.core.coral.models.loael.general.CoralGeneralLoael;
@@ -22,18 +23,18 @@ public class TestModel {
 
         ////////////////////
 
-        String sourcefile = "C:\\Users\\alber\\Desktop\\prova\\prova_henry.txt";
-
-        TestCoralModel(sourcefile, new CoralHenrysLaw());
-        if (1==1) return;
+//        String sourcefile = "C:\\Users\\alber\\Desktop\\prova\\prova_henry.txt";
+//
+//        TestCoralModel(sourcefile, new CoralHenrysLaw());
+//        if (1==1) return;
 
         ////////////////////
 
         String[] smi = {
-            "CCC([N+]([O-])=O)([N+]([O-])=O)[N+]([O-])=O",
+            "N#CN",
         };
 
-        CoralModel model = new CoralHenrysLaw();
+        CoralModel model = new CoralEC50();
 
         for (String s : smi) {
             System.out.println("Attributes for molecule: ");
