@@ -13,13 +13,12 @@ import java.util.ArrayList;
 
 /**
  *
- * @author MMarzo
  */
 public class CoralEC50 extends CoralModel{
 
 
     public CoralEC50() {
-        super(-1.1668968 ,  0.1228173, "/attr-cw-ec50.txt");
+        super(-0.8972636 ,  0.1447300, "/attr-cw-ec50-corr.txt");
     }
     
         @Override
@@ -31,15 +30,13 @@ public class CoralEC50 extends CoralModel{
         ArrayList<String> res = coral_smi.ProcessSMILESwithSquareBracket(smi);
 
         // Sk,SSk,SSSk on all elements NOT including square brackets
-        CoralAttributes.SQUARED_BRACKETS_TOKENS_CALCULATION = true;
-        ArrayList<String> attr_list = CoralAttributes.calculateAllLocalAttributes(res);
         CoralAttributes.SQUARED_BRACKETS_TOKENS_CALCULATION = false;
+        ArrayList<String> attr_list = CoralAttributes.calculateAllLocalAttributes(res);
 
-        ArrayList<Double> weights = calculateSAvalues(attr_list, true);
+        ArrayList<Double> weights = calculateSAvalues(attr_list, false);
         for (Double cw : weights) {
             dcw += cw;
         }
-        System.out.println("DCW: " + dcw);
         return dcw;
 
     }

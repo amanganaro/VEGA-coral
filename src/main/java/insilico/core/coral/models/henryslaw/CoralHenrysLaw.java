@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 /**
  *
- * @author MMarzo
  */
 public class CoralHenrysLaw extends CoralModel{
 

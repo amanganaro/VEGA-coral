@@ -8,6 +8,7 @@ import insilico.core.coral.models.loael.liver.CoralLiverLoaelNew;
 import insilico.core.coral.models.loael.liver.CoralLiverLoel;
 import insilico.core.coral.models.noael.general.CoralGeneralNoael;
 import insilico.core.coral.models.noael.liver.CoralLiverNoaelNew;
+import insilico.core.coral.models.noec.harlequin.CoralNoecHarlequin;
 import insilico.core.coral.models.skin.irritation.CoralSkinIrritation;
 import insilico.core.coral.models.zebrafish.CoralZebraFish;
 import insilico.core.molecule.InsilicoMolecule;
@@ -23,18 +24,18 @@ public class TestModel {
 
         ////////////////////
 
-//        String sourcefile = "C:\\Users\\alber\\Desktop\\prova\\prova_henry.txt";
+//        String sourcefile = "C:\\Users\\alber\\Desktop\\prova\\harle.txt";
 //
-//        TestCoralModel(sourcefile, new CoralHenrysLaw());
+//        TestCoralModel(sourcefile, new CoralNoecHarlequin());
 //        if (1==1) return;
 
         ////////////////////
 
         String[] smi = {
-            "N#CN",
+            "Clc2ccc(C(OCC=C)Cn1ccnc1)c(Cl)c2",
         };
 
-        CoralModel model = new CoralEC50();
+        CoralModel model = new CoralNoecHarlequin();
 
         for (String s : smi) {
             System.out.println("Attributes for molecule: ");
