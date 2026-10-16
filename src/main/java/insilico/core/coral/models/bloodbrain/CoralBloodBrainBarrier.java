@@ -3,7 +3,7 @@
  * The experimental data is expressed in mg/kg bw (as logarithmic units)
  * The optimal descriptor is based on attributes extracted from SMILES (Sk, SSk, SSSk, e1, e2, e3, nn).
  */
-package insilico.core.coral.models.noec.avianrepro;
+package insilico.core.coral.models.bloodbrain;
 
 import insilico.core.coral.CoralAttributes;
 import insilico.core.coral.CoralModel;
@@ -14,11 +14,11 @@ import java.util.ArrayList;
 /**
  *
  */
-public class CoralNoecAvianReproduction extends CoralModel{
+public class CoralBloodBrainBarrier extends CoralModel{
 
 
-    public CoralNoecAvianReproduction() {
-        super(0.2673963 ,  0.0955223, "/attr-cw-noec-avian-repro.txt");
+    public CoralBloodBrainBarrier() {
+        super(0.2673963 ,  0.0955223, "/attr-cw-blood-brain.txt");
     }
     
         @Override
