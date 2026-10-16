@@ -8,6 +8,7 @@ import insilico.core.coral.models.loael.liver.CoralLiverLoaelNew;
 import insilico.core.coral.models.loael.liver.CoralLiverLoel;
 import insilico.core.coral.models.noael.general.CoralGeneralNoael;
 import insilico.core.coral.models.noael.liver.CoralLiverNoaelNew;
+import insilico.core.coral.models.noec.avianrepro.CoralNoecAvianReproduction;
 import insilico.core.coral.models.noec.harlequin.CoralNoecHarlequin;
 import insilico.core.coral.models.skin.irritation.CoralSkinIrritation;
 import insilico.core.coral.models.zebrafish.CoralZebraFish;
@@ -24,10 +25,10 @@ public class TestModel {
 
         ////////////////////
 
-//        String sourcefile = "C:\\Users\\alber\\Desktop\\prova\\harle.txt";
-//
-//        TestCoralModel(sourcefile, new CoralNoecHarlequin());
-//        if (1==1) return;
+        String sourcefile = "C:\\Users\\alber\\Desktop\\avian.txt";
+
+        TestCoralModel(sourcefile, new CoralNoecAvianReproduction());
+        if (1==1) return;
 
         ////////////////////
 
