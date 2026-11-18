@@ -463,6 +463,86 @@ public class CoralAttributes {
     }
 
 
+    /**
+     * Calculates the local-symmetry attributes in the form [xyx(n)] [xyyx(n)] [xyzyx(n)].
+     * <p>
+     * Each attribute counts how many times a short palindrome pattern occurs among the
+     * consecutive tokens of the SMILES (a "local symmetry", designed for peptide sequences):
+     * <ul>
+     *   <li>XYX   : window a,b,c   matches when a==c and a!=b;</li>
+     *   <li>XYYX  : window a,b,c,d matches when a==d and b==c and a!=b;</li>
+     *   <li>XYZYX : window a,b,c,d,e matches when a==e and b==d and a!=b (centre free).</li>
+     * </ul>
+     * Tokens are compared with {@link String#equals(Object)} (so Cl, Br, [N+], ... are single
+     * symbols). The number of matches {@code n} becomes the attribute suffix (or '#' when n&gt;=20).
+     * <p>
+     * The window ranges reproduce the original CORALSEA executable verbatim, including its
+     * off-by-one boundary behaviour (routines at VA 0x46D500 / 0x46D6E8 / 0x46D8FC): XYYX does
+     * not examine the last quadruple, and XYZYX examines neither the first nor the last quintuple
+     * (hence at least 7 tokens are needed for any XYZYX match).
+     *
+     * @param tokenList the list of SMILES tokens.
+     * @return the three symmetry attributes, as 12-char '.'-padded strings.
+     */
+    public static ArrayList<String> calculateAttributeSymmetry(ArrayList<String> tokenList) {
+        int n = tokenList.size();
+
+        // XYX: window a,b,c ; match when a==c && a!=b. Every internal triple (i = 0 .. n-3).
+        int countXyx = 0;
+        for (int i = 0; i <= n - 3; i++) {
+            String a = tokenList.get(i), b = tokenList.get(i + 1), c = tokenList.get(i + 2);
+            if (a.equals(c) && !a.equals(b))
+                countXyx++;
+        }
+
+        // XYYX: window a,b,c,d ; match when a==d && b==c && a!=b.
+        // Faithful to the exe: the last quadruple (i = n-4) is NOT examined.
+        int countXyyx = 0;
+        for (int i = 0; i <= n - 5; i++) {
+            String a = tokenList.get(i), b = tokenList.get(i + 1),
+                   c = tokenList.get(i + 2), d = tokenList.get(i + 3);
+            if (a.equals(d) && b.equals(c) && !a.equals(b))
+                countXyyx++;
+        }
+
+        // XYZYX: window a,b,c,d,e ; match when a==e && b==d && a!=b (centre c is free).
+        // Faithful to the exe: the first (i = 0) and last (i = n-5) quintuples are NOT examined.
+        int countXyzyx = 0;
+        for (int i = 1; i <= n - 6; i++) {
+            String a = tokenList.get(i),     b = tokenList.get(i + 1), c = tokenList.get(i + 2),
+                   d = tokenList.get(i + 3), e = tokenList.get(i + 4);
+            if (a.equals(e) && b.equals(d) && !a.equals(b))
+                countXyzyx++;
+        }
+
+        ArrayList<String> symmetryAttrList = new ArrayList<>();
+        symmetryAttrList.add(buildSymmetryAttribute("xyx", countXyx));
+        symmetryAttrList.add(buildSymmetryAttribute("xyyx", countXyyx));
+        symmetryAttrList.add(buildSymmetryAttribute("xyzyx", countXyzyx));
+
+        return symmetryAttrList;
+    }
+
+
+    /**
+     * Builds a single 12-char symmetry attribute "[&lt;name&gt;&lt;count&gt;]" right-padded with
+     * '.', using the same fixed width as the Sk/SSk attributes. The count is rendered as its
+     * decimal value, or '#' when it reaches 20, exactly as the original executable.
+     *
+     * @param name  the family name ("xyx", "xyyx" or "xyzyx").
+     * @param count the number of matching windows.
+     * @return the padded attribute string, e.g. "[xyx0]......".
+     */
+    private static String buildSymmetryAttribute(String name, int count) {
+        String suffix = count < 20 ? Integer.toString(count) : "#";
+        String token = "[" + name + suffix + "]";
+
+        char[] field = {'.','.','.','.','.','.','.','.','.','.','.','.'};
+        token.getChars(0, token.length(), field, 0);
+
+        return new String(field);
+    }
+
 
     /**
      * Calculate all the Sk, SSk, SSSk attributes for the given tokens list.
