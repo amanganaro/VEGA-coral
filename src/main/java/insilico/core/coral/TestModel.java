@@ -1,6 +1,7 @@
 package insilico.core.coral;
 
 import insilico.core.coral.models.bloodbrain.CoralBloodBrainBarrier;
+import insilico.core.coral.models.noael.CoralNoaelRepeatedRat;
 import insilico.core.coral.models.noec.avianrepro.CoralNoecAvianRepro;
 import insilico.core.coral.models.noec.harlequin.CoralNoecHarlequin;
 
@@ -13,18 +14,18 @@ public class TestModel {
 
         ////////////////////
 
-//        String sourcefile = "C:\\Users\\alber\\Desktop\\avian.txt";
-//
-//        TestCoralModel(sourcefile, new CoralNoecAvianRepro());
-//        if (1==1) return;
+        String sourcefile = "C:\\Users\\alber\\Desktop\\rat.txt";
+
+        TestCoralModel(sourcefile, new CoralNoaelRepeatedRat());
+        if (1==1) return;
 
         ////////////////////
 
         String[] smi = {
-            "O=C(N(CC)CC)C(Oc1cccc2ccccc12)C ",
+            "O=C(O)C(Oc1ccc(cc1C)Cl)C",
         };
 
-        CoralModel model = new CoralNoecAvianRepro();
+        CoralModel model = new CoralNoaelRepeatedRat();
 
         for (String s : smi) {
             System.out.println("Attributes for molecule: ");
