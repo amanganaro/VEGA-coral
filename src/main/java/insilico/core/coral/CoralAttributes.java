@@ -467,31 +467,43 @@ public class CoralAttributes {
      * Calculates the local-symmetry attributes in the form [xyx(n)] [xyyx(n)] [xyzyx(n)].
      * <p>
      * Each attribute counts how many times a short palindrome pattern occurs among the
-     * consecutive tokens of the SMILES (a "local symmetry", designed for peptide sequences):
+     * consecutive CHARACTERS of the SMILES string (a "local symmetry", designed for peptide
+     * sequences):
      * <ul>
      *   <li>XYX   : window a,b,c   matches when a==c and a!=b;</li>
      *   <li>XYYX  : window a,b,c,d matches when a==d and b==c and a!=b;</li>
      *   <li>XYZYX : window a,b,c,d,e matches when a==e and b==d and a!=b (centre free).</li>
      * </ul>
-     * Tokens are compared with {@link String#equals(Object)} (so Cl, Br, [N+], ... are single
-     * symbols). The number of matches {@code n} becomes the attribute suffix (or '#' when n&gt;=20).
+     * The number of matches {@code n} becomes the attribute suffix (or '#' when n&gt;=20).
+     * <p>
+     * <b>Input: the raw SMILES, not the CORAL tokens.</b> CORALSEA runs the matchers on the
+     * characters of the SMILES exactly as written: no tokenization (Cl, Br, [N+] are NOT single
+     * symbols), no square-bracket cleaning, and ring digits, '(', ')', '[', ']', '+', '-', '='
+     * all count as ordinary characters. A first token-based version gave wrong results, because
+     * the CORAL tokenizer turns ')' into '(' and so creates spurious symmetries: for
+     * O=S(CC)CCSP(=O)(OC)OC the tokens contain "(CC(" and "O((O" (2 XYYX matches), while the
+     * raw string has "(CC)" and "O)(O" (0 matches). The character-based behaviour was verified
+     * against the calculations sent by the CORAL author (DemoDCW files, Nov 2026), which match
+     * on all four test molecules, including O=[N+]([O-])c1cc(cc(c1N(CCC)CCC)[N+](=O)[O-])S(=O)(=O)N
+     * (4/1/1), which also rules out the square-bracket cleaning used for the Sk attributes.
      * <p>
      * The window ranges reproduce the original CORALSEA executable verbatim, including its
      * off-by-one boundary behaviour (routines at VA 0x46D500 / 0x46D6E8 / 0x46D8FC): XYYX does
      * not examine the last quadruple, and XYZYX examines neither the first nor the last quintuple
-     * (hence at least 7 tokens are needed for any XYZYX match).
+     * (hence at least 7 characters are needed for any XYZYX match).
      *
-     * @param tokenList the list of SMILES tokens.
+     * @param smiles the raw SMILES string, as given to the model (only trimmed).
      * @return the three symmetry attributes, as 12-char '.'-padded strings.
      */
-    public static ArrayList<String> calculateAttributeSymmetry(ArrayList<String> tokenList) {
-        int n = tokenList.size();
+    public static ArrayList<String> calculateAttributeSymmetry(String smiles) {
+        String s = smiles.trim();
+        int n = s.length();
 
         // XYX: window a,b,c ; match when a==c && a!=b. Every internal triple (i = 0 .. n-3).
         int countXyx = 0;
         for (int i = 0; i <= n - 3; i++) {
-            String a = tokenList.get(i), b = tokenList.get(i + 1), c = tokenList.get(i + 2);
-            if (a.equals(c) && !a.equals(b))
+            char a = s.charAt(i), b = s.charAt(i + 1), c = s.charAt(i + 2);
+            if (a == c && a != b)
                 countXyx++;
         }
 
@@ -499,9 +511,8 @@ public class CoralAttributes {
         // Faithful to the exe: the last quadruple (i = n-4) is NOT examined.
         int countXyyx = 0;
         for (int i = 0; i <= n - 5; i++) {
-            String a = tokenList.get(i), b = tokenList.get(i + 1),
-                   c = tokenList.get(i + 2), d = tokenList.get(i + 3);
-            if (a.equals(d) && b.equals(c) && !a.equals(b))
+            char a = s.charAt(i), b = s.charAt(i + 1), c = s.charAt(i + 2), d = s.charAt(i + 3);
+            if (a == d && b == c && a != b)
                 countXyyx++;
         }
 
@@ -509,9 +520,9 @@ public class CoralAttributes {
         // Faithful to the exe: the first (i = 0) and last (i = n-5) quintuples are NOT examined.
         int countXyzyx = 0;
         for (int i = 1; i <= n - 6; i++) {
-            String a = tokenList.get(i),     b = tokenList.get(i + 1), c = tokenList.get(i + 2),
-                   d = tokenList.get(i + 3), e = tokenList.get(i + 4);
-            if (a.equals(e) && b.equals(d) && !a.equals(b))
+            char a = s.charAt(i), b = s.charAt(i + 1),
+                 d = s.charAt(i + 3), e = s.charAt(i + 4);
+            if (a == e && b == d && a != b)
                 countXyzyx++;
         }
 

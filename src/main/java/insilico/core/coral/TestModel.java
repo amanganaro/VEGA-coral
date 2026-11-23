@@ -14,18 +14,18 @@ public class TestModel {
 
         ////////////////////
 
-        String sourcefile = "C:\\Users\\alber\\Desktop\\rat.txt";
+        String sourcefile = "C:\\Users\\alber\\Desktop\\avian.txt";
 
-        TestCoralModel(sourcefile, new CoralNoaelRepeatedRat());
+        TestCoralModel(sourcefile, new CoralNoecAvianRepro());
         if (1==1) return;
 
         ////////////////////
 
         String[] smi = {
-            "O=C(O)C(Oc1ccc(cc1C)Cl)C",
+            "O=[N+]([O-])c1cc(cc(c1N(CCC)CCC)[N+](=O)[O-])S(=O)(=O)N",
         };
 
-        CoralModel model = new CoralNoaelRepeatedRat();
+        CoralModel model = new CoralNoecAvianRepro();
 
         for (String s : smi) {
             System.out.println("Attributes for molecule: ");

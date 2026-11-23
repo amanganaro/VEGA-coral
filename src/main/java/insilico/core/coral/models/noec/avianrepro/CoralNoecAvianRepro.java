@@ -31,11 +31,15 @@ public class CoralNoecAvianRepro extends CoralModel{
 
         // Sk,SSk,SSSk on all elements NOT including square brackets
         CoralAttributes.SQUARED_BRACKETS_TOKENS_CALCULATION = true;
-        ArrayList<String> attr_list = CoralAttributes.calculateAllLocalAttributes(res);
-        attr_list.addAll(CoralAttributes.calculateAttributeSymmetry(res));
+//        ArrayList<String> attr_list = CoralAttributes.calculateAllLocalAttributes(res);
+        ArrayList<String> attr_list = CoralAttributes.calculateAttributeSks(res);
+        attr_list.addAll( CoralAttributes.calculateAttributeSSks(res) );
+        // symmetry attributes are computed on the raw SMILES characters, NOT on the tokens
+        // (see CoralAttributes.calculateAttributeSymmetry for the details)
+        attr_list.addAll(CoralAttributes.calculateAttributeSymmetry(smi));
         CoralAttributes.SQUARED_BRACKETS_TOKENS_CALCULATION = false;
 
-        ArrayList<Double> weights = calculateSAvalues(attr_list, true);
+        ArrayList<Double> weights = calculateSAvalues(attr_list, false);
         for (Double cw : weights) {
             dcw += cw;
         }
