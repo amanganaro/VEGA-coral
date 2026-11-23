@@ -4,6 +4,7 @@ import insilico.core.coral.models.bloodbrain.CoralBloodBrainBarrier;
 import insilico.core.coral.models.noael.CoralNoaelRepeatedRat;
 import insilico.core.coral.models.noec.avianrepro.CoralNoecAvianRepro;
 import insilico.core.coral.models.noec.harlequin.CoralNoecHarlequin;
+import insilico.core.coral.models.retentiontime.CoralRetentionPesticides;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,9 +15,9 @@ public class TestModel {
 
         ////////////////////
 
-        String sourcefile = "C:\\Users\\alber\\Desktop\\avian.txt";
+        String sourcefile = "C:\\Users\\alber\\Desktop\\ret.txt";
 
-        TestCoralModel(sourcefile, new CoralNoecAvianRepro());
+        TestCoralModel(sourcefile, new CoralRetentionPesticides());
         if (1==1) return;
 
         ////////////////////
