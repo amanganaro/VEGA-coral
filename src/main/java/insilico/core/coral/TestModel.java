@@ -1,6 +1,7 @@
 package insilico.core.coral;
 
 import insilico.core.coral.models.bloodbrain.CoralBloodBrainBarrier;
+import insilico.core.coral.models.lc50.CoralLC50RainbowTrout;
 import insilico.core.coral.models.noael.CoralNoaelRepeatedRat;
 import insilico.core.coral.models.noec.avianrepro.CoralNoecAvianRepro;
 import insilico.core.coral.models.noec.harlequin.CoralNoecHarlequin;
@@ -15,9 +16,9 @@ public class TestModel {
 
         ////////////////////
 
-        String sourcefile = "C:\\Users\\alber\\Desktop\\ret.txt";
+        String sourcefile = "C:\\Users\\alber\\Desktop\\trout.txt";
 
-        TestCoralModel(sourcefile, new CoralRetentionPesticides());
+        TestCoralModel(sourcefile, new CoralLC50RainbowTrout());
         if (1==1) return;
 
         ////////////////////
